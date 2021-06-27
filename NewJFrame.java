@@ -1,28 +1,43 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class creates a new window in the size of the current screen
+ * 
+ * @author sonke-s
+ * @author n-c0de-r
+ * @version 28.06.2021
+ */
 public class NewJFrame {
-	
+
+	private int screenHeight;
+	private int screenWidth;
+
 	static JFrame jf = new JFrame();
-	
+
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		setup();
-		triangles();
+
+		NewJFrame j = new NewJFrame();
+		j.setup();
+		j.triangles();
 	}
-	
-	public static void setup() {
+
+	/**
+	 * This method creates the Window
+	 */
+	public void setup() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int screenHeight = screenSize.height;
-		int screenWidth = screenSize.width;
+		screenHeight = screenSize.height;
+		screenWidth = screenSize.width;
 
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setSize(screenWidth, screenHeight);
-//		int width = jf.getWidth();
-//		int height = jf.getHeight();
 	}
-	
-	public static void triangles() {
+
+	/**
+	 * This method prints Sierpinski Triangles recursively
+	 */
+	public void triangles() {
 		jf.add(new Triangles());
 		jf.setVisible(true);
 	}
