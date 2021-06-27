@@ -14,15 +14,29 @@ public class Triangles extends Panel {
 			draw(g, a, b);
 		}
 		
+		/**
+		 * This draws the main big triangle and calls recursion.
+		 * 
+		 * @param g Graphics object.
+		 * @param x Array of points x coordinates.
+		 * @param y Array of points y coordinates.
+		 */
 		public void draw(Graphics g, int[] x, int[] y) {
-			if(x[0] != 1) {
 			g.setColor(Color.GRAY);
 			g.fillPolygon(x, y, 3);
-			drawTriangle(g, a, b, 5);
-			}
+			drawTriangles(g, a, b, 5);
 		}
 		
-		public void drawTriangle(Graphics gr, int[] x, int[] y, int level) {
+		/**
+		 * Draws additional triangles recursively.
+		 * 
+		 * @param gr Graphics object.
+		 * @param x Array of points x coordinates.
+		 * @param y Array of points y coordinates.
+		 * @param level	current level of recursion
+		 */
+		public void drawTriangles(Graphics gr, int[] x, int[] y, int level) {
+			//Pick random colors
 			int r = new Random().nextInt(250);
 			int g = new Random().nextInt(250);
 			int b = new Random().nextInt(250);
@@ -45,10 +59,11 @@ public class Triangles extends Panel {
 			int[] yb = {(y[0] + y[2]) / 2, (y[1] + y[2]) / 2, y[2]};
 			gr.fillPolygon(xb, yb, 3);
 			
+			//Only draw until the last level is reached
 			if (level > 0) {
-			drawTriangle(gr, xa, ya, level-1);
-			drawTriangle(gr, xb, yb, level-1);
-			drawTriangle(gr, xc, yc, level-1);
+			drawTriangles(gr, xa, ya, level-1);
+			drawTriangles(gr, xb, yb, level-1);
+			drawTriangles(gr, xc, yc, level-1);
 			}
 		}
 	}
