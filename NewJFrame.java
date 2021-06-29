@@ -2,9 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.awt.event.WindowStateListener;
 
 /**
  * This class creates a new window in the size of the current screen
@@ -41,6 +38,7 @@ public class NewJFrame extends JFrame implements ComponentListener{
 		jf.setSize(screenSize.width, screenSize.height);
 		jf.setVisible(true);
 		g = jf.getGraphics();
+		jf.add(new Triangles(jf.getContentPane().getHeight(), g));
 	}
 
 	@Override
@@ -49,7 +47,6 @@ public class NewJFrame extends JFrame implements ComponentListener{
 		Dimension newSize = jf.getSize();
 		width = newSize.width;
 		height = newSize.height;
-		jf.add(new Triangles(height, g));
 	}
 
 	@Override
