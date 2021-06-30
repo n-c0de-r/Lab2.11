@@ -1,22 +1,23 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Panel;
-import java.util.Random;
 
 public class Triangles extends Panel {
-	
-		private int width;
-		private int height;
 		
 		private Color[] colors = {Color.BLUE, Color.CYAN, Color.YELLOW, Color.MAGENTA, Color.GREEN, Color.RED, Color.PINK, Color.ORANGE};
 		
 		private int[] a = {0,0,0}; // Top, Left, Right
 		private int[] b = {0,0,0};
 		
-		public Triangles(int h, Graphics g) {
+		public void paint(Graphics g) {
 			
-			width = h;
-			height = h;
+			int width = NewJFrame.getPane().getWidth();
+			int height = NewJFrame.getPane().getHeight();
+
+			if(width!=height) {
+				width = Math.min(width, height);
+				height = Math.min(width, height);
+			}
 			
 			a[0] = width/2;
 			a[1] = 0;
@@ -25,12 +26,6 @@ public class Triangles extends Panel {
 			b[0] = 0;
 			b[1] = height;
 			b[2] = height;
-			
-			this.paint(g);
-		}
-		
-		public void paint(Graphics g) {
-			//System.out.println(width);
 			drawTriangles(g, a, b, 6);
 		}
 		
@@ -43,9 +38,9 @@ public class Triangles extends Panel {
 		 * @param level	current level of recursion
 		 */
 		public void drawTriangles(Graphics gr, int[] x, int[] y, int level) {
-
+			
 			gr.setColor(colors[level]);
-			System.out.print(level);
+			
 			//Triangle big
 			//Points Top, Left, Right
 			int[] xd = {x[0], x[1], x[2]};
@@ -53,7 +48,6 @@ public class Triangles extends Panel {
 			gr.fillPolygon(xd, yd, 3);
 			
 			//Math derived from here https://courses.cs.duke.edu//fall01/cps001/labs/lab7.html
-			
 			//Triangle top
 			//Points Top, Left, Right
 			int[] xc = {x[0], (x[0] + x[1]) / 2, (x[0] + x[2]) / 2};
@@ -80,3 +74,4 @@ public class Triangles extends Panel {
 			}
 		}
 	}
+
